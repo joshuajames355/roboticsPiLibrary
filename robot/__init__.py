@@ -14,7 +14,7 @@ def getAnaloguePower(pin):
 	return bus.read_byte_data(address,pin + 100)
 	
 def getDigitalPower(pin):
-	return bus.read_byte_data(address,pin)[0]	
+	return bus.read_byte_data(address,pin)	
 
 #power is HIGH or LOW
 def setPin(pin, power):
