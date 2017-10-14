@@ -10,6 +10,12 @@ CHANNELB = 5
 bus = smbus.SMBus(1)
 address = 0x40
 
+def getAnaloguePower(pin):
+	return bus.read_byte_data(address,pin + 100)
+	
+def getDigitalPower(pin):
+	return bus.read_byte_data(address,pin)[0]	
+
 #power is HIGH or LOW
 def setPin(pin, power):
     if power == HIGH:
