@@ -13,23 +13,23 @@ address = 0x40
 #power is HIGH or LOW
 def setPin(pin, power):
     if power == HIGH:
-        writeString("h" + str(pin))
+        writeString("h", str(pin))
     else:
-        writeString("l" + str(pin))
+        writeString("l", str(pin))
 
 #mode is INPUT or OUTPUT
 def setPinMode(pin, mode):
     if mode == INPUT:
-        writeString("i" + str(pin))
+        writeString("i", str(pin))
     else:
-        writeString("o" + str(pin))
+        writeString("o", str(pin))
 
 #channel is CHANNELA or CHANNELB
 def setMotorPower(channel, power):
     if channel == CHANNELA:
-        writeString("a" + str(power))
+        writeString("a", str(power))
     else:
-        writeString("b" + str(power))
+        writeString("b", str(power))
 
 def encodeStringAsByteArray(string):
     array = []
@@ -38,7 +38,7 @@ def encodeStringAsByteArray(string):
     return array
 
 
-def writeString(string):
-    bus.write_i2c_block_data(address,0x00,encodeStringAsByteArray(string))
+def writeString(command,data):
+    bus.write_i2c_block_data(address,ord(command),encodeStringAsByteArray(data))
 
 
