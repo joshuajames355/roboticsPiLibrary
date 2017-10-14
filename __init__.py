@@ -1,25 +1,44 @@
 import smbus
-import time
 
-HIGH = 1
-LOW = 0
-INPUT = 1
-OUTPUT = 2
+HIGH = 0
+LOW = 1
+INPUT = 2
+OUTPUT = 3
+CHANNELA = 4
+CHANNELB = 5
 
 bus = smbus.SMBus(1)
-address = 0x04
+address = 0x40
 
 #power is HIGH or LOW
 def setPin(pin, power):
     if power == HIGH:
-        bus.write(address, "h" + str(pin))
+        writeString("h" + str(pin))
     else:
-        bus.write(address, "l" + str(pin))
+        writeString("l" + str(pin))
 
+#mode is INPUT or OUTPUT
 def setPinMode(pin, mode):
-    if power == INPUT:
-        bus.write(address, "i" + str(pin))
+    if mode == INPUT:
+        writeString("i" + str(pin))
     else:
-        bus.write(address, "o" + str(pin))
+        writeString("o" + str(pin))
+
+#channel is CHANNELA or CHANNELB
+def setMotorPower(channel, power):
+    if channel == CHANNELA:
+        writeString("a" + str(power))
+    else:
+        writeString("b" + str(power))
+
+def encodeStringAsByteArray(string):
+    array = []
+    for each in string:
+        array.append(ord(each))
+    return array
+
+
+def writeString(string):
+    bus.write_i2c_block_data(address,0x00,encodeStringAsByteArray(string))
 
 
