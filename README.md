@@ -1,6 +1,6 @@
 # Overview
 
-This is a library for a raspberry pi and that simplifies the proccess of
+This is a library for a raspberry pi and that simplifies the process of
 sending serial commands over i2c to interface with https://github.com/laserbeam897/roboticsArduinoClient.
 It currently can set the power and mode of digital pins , send the power of all pins 
 (0/1 for digital pins , 0-255 for analog pins) , and set the power/direction for the motor shield.
@@ -17,7 +17,7 @@ negative numbers indicating running in reverse.
 # Communicaton protocol Details
 
 ## Command formats:
-*[] indicates a variable. 
+* [] indicates a variable. 
 * i [pinNumber] //setmode of a digital pin to input
 * o [pinNumber] //setmode of a digital pin to output
 * h [pinNumber] //set a digit pin to high
