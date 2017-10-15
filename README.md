@@ -14,6 +14,24 @@ It currently can set the power and mode of digital pins , send the power of all 
 * setMotorPower(channel, power), where channel is either CHANNELA or CHANNELB (constants declared in the library). Power must be -255-255 , with 
 negative numbers indicating running in reverse.
 
+# I2C Setup
+
+This library requires i2c to be setup on the raspberry pi.
+
+1. Remove I2C from Blacklist:
+
+    \$ cat /etc/modprobe.d/raspi-blacklist.conf    
+    \# blacklist spi and i2c by default (many users don't need them)    
+    blacklist spi-bcm2708    
+    \#blacklist i2c-bcm2708    
+3. Load i2c.dev in Module File
+    Add this to the end of /etc/modules
+    `i2c-dev`
+    
+3. Run install.sh
+
+   ./install.sh
+
 # Communicaton protocol Details
 
 ## Command formats:
